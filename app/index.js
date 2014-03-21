@@ -56,6 +56,7 @@ IoSlidesGenerator.prototype.packageJSON = function packageJSON () {
 
 IoSlidesGenerator.prototype.jshint = function jshint () {
   this.copy('jshintrc', '.jshintrc');
+  this.copy('jshintignore', '.jshintignore');
 }
 
 IoSlidesGenerator.prototype.bower = function bower () {

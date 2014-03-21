@@ -23,7 +23,7 @@ module.exports = function (grunt) {
     yeoman: yeomanConfig,
     watch: {
       coffee: {
-        files: ['<%%= yeoman.app %>/scripts/{,*/}*.coffee'],
+        files: ['<%%= yeoman.app %>/js/{,*/}*.coffee'],
         tasks: ['coffee']
       },
       less: {
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
         files: [
           '<%%= yeoman.app %>/*.html',
           '{.tmp,<%%= yeoman.app %>}/styles/{,*/}*.css',
-          '{.tmp,<%%= yeoman.app %>}/scripts/{,*/}*.js',
+          '{.tmp,<%%= yeoman.app %>}/js/{,*/}*.js',
           '<%%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -97,8 +97,8 @@ module.exports = function (grunt) {
       },
       all: [
         'Gruntfile.js',
-        '<%%= yeoman.app %>/scripts/{,*/}*.js',
-        '!<%%= yeoman.app %>/scripts/vendor/*',
+        '<%%= yeoman.app %>/js/{,*/}*.js',
+        '!<%%= yeoman.app %>/js/vendor/*',
         'test/spec/{,*/}*.js'
       ]
     },<% if (testFramework === 'mocha') { %>
@@ -106,7 +106,7 @@ module.exports = function (grunt) {
       all: {
         options: {
           run: true,
-          urls: ['http://localhost:<%%= connect.options.port %>/index.html']
+          urls: ['http://localhost:<%%= connect.test.options.port %>/index.html']
         }
       }
     },<% } else if (testFramework === 'jasmine') { %>
@@ -122,9 +122,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%%= yeoman.app %>/scripts',
+          cwd: '<%%= yeoman.app %>/js',
           src: '{,*/}*.coffee',
-          dest: '<%%= yeoman.app %>/scripts',
+          dest: '<%%= yeoman.app %>/js',
           ext: '.js'
         }]
       }
@@ -157,7 +157,7 @@ module.exports = function (grunt) {
       dist: {
         files: {
           src: [
-            '<%%= yeoman.dist %>/scripts/{,*/}*.js',
+            '<%%= yeoman.dist %>/js/{,*/}*.js',
             '<%%= yeoman.dist %>/styles/{,*/}*.css',
             '<%%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
             '<%%= yeoman.dist %>/fonts/{,*/}*.*'
@@ -300,11 +300,11 @@ module.exports = function (grunt) {
     'useminPrepare',
     'concurrent',
     'cssmin',
-    'concat',
-    'uglify',
+    //'concat',
+    //'uglify',
+    //'usemin'
     'copy',
-    'rev',
-    'usemin'
+    'rev'
   ]);
 
   grunt.registerTask('default', [
