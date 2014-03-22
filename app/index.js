@@ -70,7 +70,7 @@ IoSlidesGenerator.prototype.app = function app () {
     this.directory('js', 'app/js');
     this.directory('images', 'app/images');
     this.directory('scripts', 'app/scripts');
-    this.copy('_template.html', 'app/template.html');
+    this.copy('_template.html', 'app/index.html');
     this.copy('_slide_config.js', 'app/slide_config.js');
     this.copy('_serve.sh', 'app/serve.sh');
 }

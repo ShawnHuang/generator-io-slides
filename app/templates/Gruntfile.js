@@ -27,7 +27,7 @@ module.exports = function (grunt) {
         tasks: ['coffee']
       },
       less: {
-        files: ['<%%= yeoman.app %>/styles/{,*/}*.less'],
+        files: ['<%%= yeoman.app %>/theme/less/{,*/}*.less'],
         tasks: ['less']
       },
       gruntfile: {
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
         },
         files: [
           '<%%= yeoman.app %>/*.html',
-          '{.tmp,<%%= yeoman.app %>}/styles/{,*/}*.css',
+          '{.tmp,<%%= yeoman.app %>}/theme/css/{,*/}*.css',
           '{.tmp,<%%= yeoman.app %>}/js/{,*/}*.js',
           '<%%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
@@ -49,7 +49,7 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // change this to '0.0.0.0' to access the server from outside
-        hostname: 'localhost',
+        hostname: '0.0.0.0',
         livereload: 35729
       },
       livereload: {
@@ -132,7 +132,8 @@ module.exports = function (grunt) {
     less: {
       dist: {
         files: {
-          '<%%= yeoman.app %>/styles/main.css': ['<%%= yeoman.app %>/styles/main.less']
+          '<%%= yeoman.app %>/theme/css/default.css': ['<%%= yeoman.app %>/theme/less/default.less'],
+          '<%%= yeoman.app %>/theme/css/phone.css': ['<%%= yeoman.app %>/theme/less/phone.less']
         },
         options: {
           sourceMap: true,
@@ -158,7 +159,7 @@ module.exports = function (grunt) {
         files: {
           src: [
             '<%%= yeoman.dist %>/js/{,*/}*.js',
-            '<%%= yeoman.dist %>/styles/{,*/}*.css',
+            '<%%= yeoman.dist %>/theme/css/{,*/}*.css',
             '<%%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
             '<%%= yeoman.dist %>/fonts/{,*/}*.*'
           ]
@@ -173,7 +174,7 @@ module.exports = function (grunt) {
     },
     usemin: {
       html: ['<%%= yeoman.dist %>/{,*/}*.html'],
-      css: ['<%%= yeoman.dist %>/styles/{,*/}*.css'],
+      css: ['<%%= yeoman.dist %>/theme/css/{,*/}*.css'],
       options: {
         dirs: ['<%%= yeoman.dist %>']
       }
@@ -201,9 +202,13 @@ module.exports = function (grunt) {
     cssmin: {
       dist: {
         files: {
-          '<%%= yeoman.dist %>/styles/main.css': [
-            '.tmp/styles/{,*/}*.css',
-            '<%%= yeoman.app %>/styles/{,*/}*.css'
+          '<%%= yeoman.dist %>/theme/css/default.css': [
+            '.tmp/theme/css/{,*/}*.css',
+            '<%%= yeoman.app %>/theme/css/{,*/}*.css'
+          ],
+          '<%%= yeoman.dist %>/theme/css/phone.css': [
+            '.tmp/theme/css/{,*/}*.css',
+            '<%%= yeoman.app %>/theme/css/{,*/}*.css'
           ]
         }
       }
@@ -302,7 +307,7 @@ module.exports = function (grunt) {
     'cssmin',
     //'concat',
     //'uglify',
-    //'usemin'
+    'usemin',
     'copy',
     'rev'
   ]);
